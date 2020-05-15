@@ -12,14 +12,15 @@ function Search(props) {
             </div>
             <div class="row">
                 <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Harry Potter</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Book Title</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Harry Potter</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Book Title</span>
+                        </div>
                     </div>
-                </div>
                 </form>
+                <a class="waves-effect waves-light btn">Search</a>
             </div>
         </div>
     );

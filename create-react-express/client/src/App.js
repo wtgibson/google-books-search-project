@@ -24,9 +24,10 @@ class App extends Component {
         </div>
         <div className="divider"></div>
         <div className="section">
-          <Results>
+          <Results />
+          <div className="container">
             <Card />
-          </Results>
+          </div>
         </div>
 
       </div>
