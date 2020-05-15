@@ -1,20 +1,39 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Navbar from './components/Navbar/Navbar';
+import Jumbotron from './components/Jumbotron/Jumbotron';
+import Results from './components/Results/Results';
+import Card from './components/Card/Card';
+import Search from "./components/Search/Search";
 
-function App() {
-  return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
+class App extends Component {
+
+
+  render () {
+    return (
+    
+    <div className="">
+      <Navbar/>
+      <div className="section center-align row">
+        <div className="section blue-grey lighten-5">
+          <Jumbotron/>
+        </div>
+        <div className="divider"></div>
+        <div className="section">
+          <Search/>
+        </div>
+        <div className="divider"></div>
+        <div className="section">
+          <Results>
+            <Card />
+          </Results>
+        </div>
+
       </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
     </div>
-  );
-}
+    )
+  };
+};
 
 
 export default App;
