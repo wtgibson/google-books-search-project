@@ -10,17 +10,17 @@ function Search(props) {
                 <h4>Book Search</h4>
                 <h6>Search for and Save Books of Interest</h6>
             </div>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <div className="row">
+                <form className="col s12">
+                    <div className="row">
+                        <div className="input-field col s12">
+                        <textarea id="textarea1" className="materialize-textarea"></textarea>
                         <label for="textarea1">Harry Potter</label>
-                        <span class="helper-text" data-error="wrong" data-success="right">Book Title</span>
+                        <span className="helper-text" data-error="wrong" data-success="right">Book Title</span>
                         </div>
                     </div>
                 </form>
-                <a class="waves-effect waves-light btn">Search</a>
+                <a className="waves-effect waves-light btn">Search</a>
             </div>
         </div>
     );
