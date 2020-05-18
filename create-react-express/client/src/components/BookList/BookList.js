@@ -1,39 +1,34 @@
 import React from "react";
 import "./bookList.css";
+import axios from "axios";
+import BookListCard from "./bookListCard";
 
 // Passing props for image and function that determines if image was clicked before
 
-export function BookList({ children }) {
-    return <div className="container">{children}</div>;
-}
+export default class BookList extends React.Component {
+    state = {
+        books: []
+    }
 
-export function BookListCard({
-    title,
-    authors,
-    description,
-    image,
-    link
-}) {
-    return (
-        <div className="col s12 m7">
-            <h4 className="header">{title}</h4>
-            <p>{authors}</p>
-            <div className="card horizontal">
-            <div className="card-image">
-                <img className="" src={image}></img>
+    componentDidMount() {
+        axios.get(`/api/books`)
+            .then(res => {
+                const books = res.data;
+                console.log(books);
+                this.setState({ books });
+            })
+    }
+    render() {
+        return (
+            <div>
+                {this.state.books.map(book => {return <BookListCard title = {book.title} />})}
             </div>
-            <div className="card-stacked">
-                <div className="card-content">
-                <p>{description}</p>
-                </div>
-                <div className="card-action">
-                    <a class="waves-effect waves-light btn" href={link}>View</a>
-                    <a class="waves-effect waves-light btn">Save</a>                
-                </div>
-            </div>
-            </div>
-        </div>
-    );
+        )
+        //fetch("/api/books")
+        //.then(res => res.json())
+        //.then(data => {
+        //console.log(data);
+        //})
+        //return <div className="container">{children}</div>;
+    }
 };
-
-export default BookListCard;
