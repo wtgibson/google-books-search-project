@@ -21,7 +21,10 @@ export default class BookList extends React.Component {
     render() {
         return (
             <div>
-                {this.state.books.map(book => {return <BookListCard title = {book.title} />})}
+                {this.state.books.map(book => {return <BookListCard key ={ book.title } 
+                title = {book.title} authors = {book.authors}
+                description = {book.description} image = {book.image} 
+                link = {book.link}/>})}
             </div>
         )
         //fetch("/api/books")

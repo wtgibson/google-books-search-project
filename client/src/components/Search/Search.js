@@ -15,7 +15,7 @@ function Search(props) {
                     <div className="row">
                         <div className="input-field col s12">
                         <textarea id="textarea1" className="materialize-textarea"></textarea>
-                        <label for="textarea1">Harry Potter</label>
+                        <label htmlFor="textarea1">Harry Potter</label>
                         <span className="helper-text" data-error="wrong" data-success="right">Book Title</span>
                         </div>
                     </div>
