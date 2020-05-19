@@ -47,7 +47,7 @@ class App extends Component {
   render () {
     return (
     
-    <div className="">
+    <div className="beginning">
       <Navbar/>
       <div className="section center-align row">
         <div className="section blue-grey lighten-5">
