@@ -6,6 +6,7 @@ import Results from './components/Results/Results';
 import BookListCard from './components/BookList/BookList';
 import BookList from './components/BookList/BookList';
 import Search from "./components/Search/Search";
+import { Router } from "express";
 
 class App extends Component {
   state = {
@@ -22,14 +23,26 @@ class App extends Component {
     });
   };
 
-  // handleFormSubmit = event => {
-  //   // When the form is submitted, prevent its default behavior, get recipes update the recipes state
-  //   event.preventDefault();
-  //   router.get(this.state.recipeSearch)
-  //     .then(res => this.setState({ recipes: res.data }))
-  //     .catch(err => console.log(err));
-  // };
-  
+  handleFormSubmit = event => {
+    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    event.preventDefault();
+    router.get(this.state.title)
+      .then(res => this.setState({ books: res.data.items }))
+      .catch(err => console.log(err));
+  };
+
+  // render() {
+  //   return (
+  //     <Router>
+  //       <div>
+  //         <Navbar/>
+  //         <Route exact path="/" component={Search} />
+  //         <Route exact path="/search" component={Search} />
+  //         <Route exact path="/saved" component={Saved} />
+  //       </div>
+  //     </Router>
+  //   );
+  // }
 
   render () {
     return (
@@ -42,7 +55,7 @@ class App extends Component {
         </div>
         <div className="divider"></div>
         <div className="section">
-          <Search/>
+          <Search search={this.state.search} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange}/>
         </div>
         <div className="divider"></div>
         <div className="section">
@@ -58,6 +71,7 @@ class App extends Component {
                         description={book.description}
                         authors={book.authors}
                         image={book.image}
+                        handleClick={this.handleBookClick}
                       />
                     );
                   })}

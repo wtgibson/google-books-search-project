@@ -14,13 +14,13 @@ function Search(props) {
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s12">
-                        <textarea id="textarea1" className="materialize-textarea"></textarea>
-                        <label for="textarea1">Harry Potter</label>
+                        <textarea id="search" className="materialize-textarea form-control" onChange={props.handleInputChange} value={props.search} name="search" type="text"></textarea>
+                        <label for="search">Harry Potter</label>
                         <span className="helper-text" data-error="wrong" data-success="right">Book Title</span>
                         </div>
                     </div>
                 </form>
-                <a className="waves-effect waves-light btn">Search</a>
+                <button onClick={props.handleFormSubmit} className="waves-effect waves-light btn">Search</button>
             </div>
         </div>
     );
