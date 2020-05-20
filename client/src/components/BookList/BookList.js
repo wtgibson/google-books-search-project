@@ -6,18 +6,7 @@ import BookListCard from "./bookListCard";
 // Passing props for image and function that determines if image was clicked before
 
 export default class BookList extends React.Component {
-    state = {
-        books: []
-    }
-
-    componentDidMount() {
-        axios.get(`/api/books`)
-            .then(res => {
-                const books = res.data;
-                console.log(books);
-                this.setState({ books });
-            })
-    }
+    
     render() {
         return (
             <div>
