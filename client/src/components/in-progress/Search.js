@@ -1,6 +1,6 @@
 import React from "react";
-// import "./search.css";
-import SearchContainer from "../SearchContainer/SearchContainer.js";
+import "./search.css";
+import SearchContainer from "./SearchContainer";
 
 function Search() {
     return (

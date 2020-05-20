@@ -67,4 +67,5 @@ In this class activity, you'll create a new React-based Google Books Search app.
 * Have a look at [https://developers.google.com/books/docs/v1/getting_started#REST](https://developers.google.com/books/docs/v1/getting_started#REST)
 
 #### Example Endpoint
+
 * [https://www.googleapis.com/books/v1/volumes?q=coraline](https://www.googleapis.com/books/v1/volumes?q=coraline)
