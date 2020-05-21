@@ -14,9 +14,19 @@ class SavedContainer extends Component {
         this.savedBooks();
     }
 
+    deleteBook = (id) => {
+       console.log(id) 
+    // axios.delete("/api/books/" + id)
+    // .then(console.log("it works!"))
+    // .catch((e) => {
+    // console.log("Oh no!")
+    // })
+    }
+    
+
     savedBooks = () => {
     
-        var queryURL = "http://localhost:3001/api/books"
+        var queryURL = "/api/books"
         
         axios.get(queryURL)
         .then(res => {
@@ -33,10 +43,20 @@ class SavedContainer extends Component {
                     <Jumbotron/>
                 </div>
                 <div className="row">
-                    {this.state.books.map(book => (
-                        <BookListCard id={book.volumeInfo.id} key={book.volumeInfo.title} title={book.volumeInfo.title} description={book.volumeInfo.description} image={book.volumeInfo.imageLinks.thumbnail} link={book.volumeInfo.infoLink} handleClick={this.handleBookClick}/>
+                    {this.state.books.map(book => {
+                        let image = ""
 
-                    ))}
+                        if(book.image) {
+                         image = book.image 
+                        }
+                            else {image = "https://via.placeholder.com/128x150?text=No+image"}
+        
+                        // console.log(image) 
+
+                        return <BookListCard id={book._id} key={book.title} title={book.title} description={book.description} image={book.image} link={book.link} handleClick={this.deleteBook}/>
+
+                    }
+                    )}
                 </div>
             </div>
         )
