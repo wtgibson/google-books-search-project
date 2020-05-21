@@ -16,7 +16,6 @@ const bookSchema = new Schema({
   description: {
     type: String,
     trim: true,
-    required: "Book description please"
   },
   image: {
     type: String,
