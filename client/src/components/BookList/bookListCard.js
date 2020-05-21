@@ -18,7 +18,8 @@ export default class BookListCard extends React.Component {
                         </div>
                         <div className="card-action">
                             <a className="waves-effect waves-light btn" href={this.props.link}>View</a>
-                            <a className="waves-effect waves-light btn">Save</a>
+                            <a className="waves-effect waves-light btn" onClick={()=> this.props.handleClick(this.props.book)}>Save</a>
+                            <a className="waves-effect waves-light btn" onClick={()=> this.props.handleClick(this.props.id)} id={this.props.id}>Unsave</a>
                         </div>
                     </div>
                 </div>
