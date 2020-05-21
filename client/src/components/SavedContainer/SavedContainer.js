@@ -15,12 +15,16 @@ class SavedContainer extends Component {
     }
 
     deleteBook = (id) => {
-       console.log(id) 
-    // axios.delete("/api/books/" + id)
-    // .then(console.log("it works!"))
-    // .catch((e) => {
-    // console.log("Oh no!")
-    // })
+    //    console.log("Deleted Book ID:" + id) 
+        axios.delete("/api/books/" + id)
+        .then(() => {
+            console.log("Deleted Book ID: " + id)
+            this.savedBooks()
+        })
+        .catch((e) => {
+        console.log("Error Deleting Book ID: " + id)
+        })
+        
     }
     
 
@@ -31,7 +35,7 @@ class SavedContainer extends Component {
         axios.get(queryURL)
         .then(res => {
             const results = res.data;
-            console.log(results);
+            // console.log(results);
             this.setState({books: results });                
         }) 
     }

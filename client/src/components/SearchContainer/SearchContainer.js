@@ -22,7 +22,7 @@ class SearchContainer extends Component {
         axios.get(queryURL)
             .then(res => {
                 const books = res.data;
-                console.log(books);
+                // console.log(books);
                 this.setState({ books: books.items });                
             })
             
@@ -30,13 +30,22 @@ class SearchContainer extends Component {
       
     }
 
+    saveBook = (book) => {
+        // console.log(book) 
+         axios.post("/api/books/", book)
+         .then(console.log("Saved Book Object: " , book))        
+         .catch((e) => {
+         console.log("Error Saving Book Object: " , book)
+         })         
+     }
+
     componentDidMount() {
         console.log("Mounted");   
     }
 
     handleBookClick = event => {
         let bookId = event; 
-        console.log(bookId);
+        // console.log(bookId);
     }
 
     handleInputChange = event => {
@@ -44,7 +53,7 @@ class SearchContainer extends Component {
         const value = event.target.value;
         this.setState({[name]:value
         });
-        console.log(this.state.search)
+        // console.log(this.state.search)
         this.searchBooks(this.state.search);
     }
 
@@ -75,8 +84,12 @@ class SearchContainer extends Component {
                     }
                         else {image = "https://via.placeholder.com/128x150?text=No+image"}
     
-                    console.log(image)                                                      
-                    return <BookListCard id={book.volumeInfo.id} key={book.volumeInfo.title} title={book.volumeInfo.title} description={book.volumeInfo.description} image={image} link={book.volumeInfo.infoLink} handleClick={this.handleBookClick}/>
+                    // console.log("Card Info " + book.id)
+                    // console.log("Card Info " + book.volumeInfo.title)
+                    // console.log("Card Info " + book.volumeInfo.description)
+                    // console.log("Card Info " + image)
+                    // console.log("Card Info " + book.volumeInfo.imageLinks.thumbnail)
+                    return <BookListCard key={book.id} title={book.volumeInfo.title} description={book.volumeInfo.description} image={image} link={book.volumeInfo.infoLink} book = {book} handleClick={this.saveBook}/>
                 }
                 )}
                    </div>

@@ -18,11 +18,19 @@ router.get("/api/books", (req, res) => {
 //tested with tempinput.html
 router.post("/api/books", ({ body }, res) => {
   console.log(body)
-  Book.create(body)
-    .then(dbbook => {
-      res.json(dbbook);
+  var newBook ={
+    title: body.volumeInfo.title,
+    description: body.volumeInfo.description,
+    image: body.volumeInfo.imageLinks.thumbnail,
+    authors: body.volumeInfo.authors,
+    link: body.volumeInfo.infoLink
+  }
+  Book.create(newBook)
+    .then(newBook => {
+      res.json(newBook);
     })
     .catch(err => {
+      console.log(err)
       res.status(400).json(err);
     });
 });
@@ -31,7 +39,7 @@ router.post("/api/books", ({ body }, res) => {
 router.delete("/api/books/:id", (req, res) => {
   Book.deleteOne({
     "_id": req.params.id
-  })
+  }).then(() => res.status(200).json(true))
     .catch(err => {
       res.status(400).json(err);
     });
