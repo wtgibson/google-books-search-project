@@ -2,80 +2,83 @@
 
 ## Summary 
 
-The purpose of the assignment was to create a workout tracker using a Mongo database with a Mongoose schema and handle routes with Express.
+The purpose of the assignment was to create a new React-based Google Books Search app. This assignment required React components, helper/util functions, and React lifecycle methods to query and display books based on user searches. It also uses Node, Express and MongoDB so that users can save books to review or purchase later.
 
 ```
-User Story
+Minimum Criteria
 
-As a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
+This application requires 2 pages:
+    
+* Search - User can search for books via the Google Books API and render them here. User has the option to "View" a book, bringing them to the book on Google Books, or "Save" a book, saving it to the Mongo database.
 
-Acceptance Criteria
+* Saved - Renders all books saved to the Mongo database. User has an option to "View" the book, bringing them to the book on Google Books, or "Delete" a book, removing it from the Mongo database.
 
-When the user loads the page, they should be given the option to create a new workout, or continue with their last workout.
-
-The user should be able to:
-
-- Add exercises to a previous workout plan
-- Add new exercises to a new workout plan
-- View multiple the combined weight of multiple exercises on the `stats` page
 ```
 
 ## Application Site
 
-![Site](images/workout.png)
+![Site](images/Search-Finished.png)
 
-![Site](images/exercise.png)
-
-![Site](images/stats.png)
+![Site](images/Saved-Finished.png)
 
 ## Technologies Used
 
 - HTML - used to create elements on the DOM
 - CSS - styles HTML elements on page
-- Bootstrap - CSS development framework that helps create beautiful, responsive layouts using human-friendly HTML
-- JavaScript - provides dynamic interactivity on HTML documents
-- jQuery - easy to use API library simplifying Javascript actions
+- Materialize - a design language that combines the classic principles of successful design along with innovation and technology
 - Node.js - asynchronous event-driven JavaScript runtime
 - Express - Node.js web application server framework, designed for building web applications
 - MongoDB - document-based, NoSQL database built for modern application developers and the cloud era
-- Mongoose - an Object Data Modeling (ODM) library for MongoDB and Node.js
+- React.js - JavaScript library for building user interfaces
+- JSX - a syntax extension to JavaScript used with React to describe what the UI should look like by producing React “elements”
 - Git - version control system to track changes to source code
 - GitHub - hosts repository that can be deployed to GitHub Pages
 - Heroku - cloud platform that lets developers build, deliver, monitor and deploy apps rapidly
 
 ## Installation & Use
 
-To use the application simply use the deloyed site link below and add a new workout, continue an existing workout, or view fitness stats in the dashboard:
+To use the application simply use the deloyed site link below and Search for a new book and add it to your Saved library:
 
- https://fitness-tracker-wtg.herokuapp.com/
+https://google-books-search-wtg.herokuapp.com/
 
 ## Code Snippet
 
-Below is the Mongoose schema for the Exercise model.
+Below is the render function of our stateful SearchContainer component, which leverages several other subcomponents as well as passes props for the children elements to use from the parent.
 
 ```js
-const mongoose = require("mongoose");
+render() {
+    return (
+        <div>
+            <div className="row">
+                <Jumbotron/>
+            </div>
+            <div className="row">
+                <div className="row">
+                    <h4>Book Search</h4>
+                    <h6>Search for and Save Books of Interest</h6>
+                </div>
+                <SearchForm search={this.state.search} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange}/>
+            </div>
+            <div className="row"> 
+                {this.state.books.map( book => {
+                    let image = ""
 
-const Schema = mongoose.Schema;
+                    if(book.volumeInfo.imageLinks) {
+                        image = book.volumeInfo.imageLinks.thumbnail 
+                    }
+                    else {image = "https://via.placeholder.com/128x150?text=No+image"}
 
-const ExerciseSchema = new Schema({
-    type: String,
-    name: String,
-    duration: Number,
-    weight: Number,
-    reps: Number,
-    sets: Number,
-    duration: Number,
-    distance: Number
-});
-
-const Exercise = mongoose.model("Exercise", ExerciseSchema)
-
-module.exports = Exercise;
+                    return <BookListCard key={book.id} title={book.volumeInfo.title} description={book.volumeInfo.description} image={image} link={book.volumeInfo.infoLink} book = {book} handleClick={this.saveBook}/>
+                }
+                )}
+            </div>
+        </div>
+    )
+}
 ```
-<!-- [Deployed Site](https://fitness-tracker-wtg.herokuapp.com/) -->
+<!-- [Deployed Site](https://google-books-search-wtg.herokuapp.com/) -->
 
-[GitHub Project Repo](https://github.com/wtgibson/17-fitness-tracker)
+[GitHub Project Repo](https://github.com/wtgibson/google-books-search-project)
 
 ## Author Links
 
@@ -86,3 +89,19 @@ Will Gibson
 [LinkedIn](https://www.linkedin.com/in/wtgibson/)
 
 [GitHub](https://github.com/wtgibson)
+
+![Site](images/57814329.jpg)
+
+Dan Fellows
+
+[LinkedIn](https://www.linkedin.com/in/dan-fellows-ba88a041/)
+
+[GitHub](https://github.com/dfel08)
+
+![Site](images/15042541.jpg)
+
+Kasey Chang
+
+[LinkedIn](https://www.linkedin.com/in/kasey-chang/)
+
+[GitHub](https://github.com/kschang77)
